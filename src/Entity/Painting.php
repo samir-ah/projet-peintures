@@ -89,7 +89,7 @@ class Painting
      */
     private $comments;
 
- 
+
 
     public function __construct()
     {
@@ -97,7 +97,7 @@ class Painting
         $this->comments = new ArrayCollection();
     }
 
-   
+
 
     public function getId(): ?int
     {
@@ -301,6 +301,4 @@ class Painting
 
         return $this;
     }
-
-    
 }

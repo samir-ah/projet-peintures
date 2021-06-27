@@ -78,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->blogPosts = new ArrayCollection();
     }
 
-   
+
 
     public function getId(): ?int
     {
@@ -288,8 +288,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    
-
-    
 }
