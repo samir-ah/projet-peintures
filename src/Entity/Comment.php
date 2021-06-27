@@ -39,7 +39,6 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity=Painting::class, inversedBy="comments")
-     * 
      */
     private $painting;
 
