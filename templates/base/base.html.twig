@@ -40,9 +40,14 @@
     {% endblock %}
   </head>
   <body id="page-top">
-    {% include "base/nav.html.twig" %} 
-    {% block body %}{% endblock %}
+    {% if app.request.get('_route') != 'app_login' %} 
+        {% include "base/nav.html.twig" %} 
+    {% endif %} 
+    {% block body %}{% endblock %} 
+    {% if app.request.get('_route') != 'app_login' %} 
     {% include "base/footer.html.twig" %}
+{% endif %} 
+  
     <!-- SimpleLightbox plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
   </body>
