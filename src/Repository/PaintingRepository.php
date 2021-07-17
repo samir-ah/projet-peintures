@@ -19,6 +19,21 @@ class PaintingRepository extends ServiceEntityRepository
         parent::__construct($registry, Painting::class);
     }
 
+    /**
+     * @var $max Number of last paintings to get
+     * @return Painting[] Returns an array of Painting objects
+     */
+    
+    public function getLastPaintingList($max)
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults($max)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
     // /**
     //  * @return Painting[] Returns an array of Painting objects
     //  */
@@ -36,7 +51,7 @@ class PaintingRepository extends ServiceEntityRepository
     }
     */
 
-    /*
+    
     public function findOneBySomeField($value): ?Painting
     {
         return $this->createQueryBuilder('p')
@@ -46,5 +61,5 @@ class PaintingRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }
