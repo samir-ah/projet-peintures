@@ -18,6 +18,19 @@ class BlogPostRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, BlogPost::class);
     }
+    /**
+     * @var $max Number of last paintings to get
+     * @return Painting[] Returns an array of Painting objects
+     */
+
+    public function getLastBlogpostList($max)
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults($max)
+            ->getQuery()
+            ->getResult();
+    }
 
     // /**
     //  * @return BlogPost[] Returns an array of BlogPost objects
