@@ -1,0 +1,39 @@
+{% extends 'base/base.html.twig' %}
+{% block body %}
+    <div class="mx-3 my-5">Toutes les Réalisations</div>
+    <div class="d-flex flex-wrap">
+        {% for painting in paintingList %}
+            <div class="my-2 mx-2">
+                <div class="card " style="max-width: 400px">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img
+                                    class="img-fluid rounded-start "
+                                    src="{{ painting.file }}"
+                                    alt="..."
+                            />
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ painting.name }}</h5>
+                                <p class="card-text small">
+                                    {{ painting.description|u.truncate(200,'...',false) }}
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-text text-muted small">
+                                    {{ painting.createdAt|date('d/m/Y') }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+    <div class="d-flex justify-content-center">
+        {{ knp_pagination_render(paintingList,'base/pagination.html.twig') }}
+    </div>
+{% endblock body %}

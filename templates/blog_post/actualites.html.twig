@@ -1,0 +1,27 @@
+{% extends 'base/base.html.twig' %}
+{% block body %}
+    <div class="mx-3 my-5">Toutes les Actualités</div>
+    <div class="d-flex flex-wrap">
+        {% for blogpost in blogpostList %}
+            <div class="my-2 mx-2">
+                <div class="card " style="max-width: 400px">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ blogpost.title }}</h5>
+                            <p class="card-text">{{ blogpost.content|u.truncate(150,'...',false) }}</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text text-muted small">{{ blogpost.createdAt|date('d/m/Y') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+    <div class="d-flex justify-content-center">
+        {{ knp_pagination_render(blogpostList,'base/pagination.html.twig') }}
+    </div>
+{% endblock body %}
