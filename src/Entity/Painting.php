@@ -90,13 +90,11 @@ class Painting
     private $comments;
 
 
-
     public function __construct()
     {
         $this->category = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
-
 
 
     public function getId(): ?int

@@ -20,20 +20,19 @@ class PaintingRepository extends ServiceEntityRepository
     }
 
     /**
-     * @var $max Number of last paintings to get
      * @return Painting[] Returns an array of Painting objects
+     * @var $max Number of last paintings to get
      */
-    
+
     public function getLastPaintingList($max)
     {
         return $this->createQueryBuilder('p')
             ->orderBy('p.id', 'DESC')
             ->setMaxResults($max)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    
+
     // /**
     //  * @return Painting[] Returns an array of Painting objects
     //  */
@@ -51,15 +50,14 @@ class PaintingRepository extends ServiceEntityRepository
     }
     */
 
-    
+
     public function findOneBySomeField($value): ?Painting
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getOneOrNullResult();
     }
-    
+
 }

@@ -10,8 +10,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'home')]
-    public function index(PaintingRepository $paintingRepository,BlogPostRepository $blogPostRepository): Response
+    /**
+     * @Route("/", name="home")
+     */
+    public function index(PaintingRepository $paintingRepository, BlogPostRepository $blogPostRepository): Response
     {
         return $this->render('home/index.html.twig', [
             'paintingList' => $paintingRepository->getLastPaintingList(3),

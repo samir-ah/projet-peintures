@@ -1,20 +1,19 @@
 <div class="mx-3">Dernières Actualitées</div>
 <div class="container my-5 d-flex justify-content-center">
-  <div class="row">
-    {% for blogpost in blogpostList %}
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ blogpost.title }}</h5>
-            <p class="card-text">{{ blogpost.content|u.truncate(150,'...',false) }}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-          <div class="card-footer">
-            <p class="card-text text-muted small">{{ blogpost.createdAt|date('d/m/Y') }}</p>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-    
-  </div>
+	<div class="row">
+		{% for blogpost in blogpostList %}
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">{{ blogpost.title }}</h5>
+						<p class="card-text">{{ blogpost.content|u.truncate(150,'...',false) }}</p>
+						<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+					<div class="card-footer">
+						<p class="card-text text-muted small">{{ blogpost.createdAt|date('d/m/Y') }}</p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 </div>
