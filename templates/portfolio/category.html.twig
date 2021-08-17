@@ -1,0 +1,25 @@
+{% extends 'base/base.html.twig' %}
+{% block body %}
+    <div class="mx-3 my-5">Catégorie: {{ category.name }}</div>
+    <div class="d-flex flex-wrap justify-content-center">
+        {% if paintingList|length > 0 %}
+            {% for p in paintingList %}
+                <div class="my-2 mx-2">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ p.file }}" class="card-img-top" alt="{{ p.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ p.name }}</h5>
+                            <p class="card-text">{{ p.description|u.truncate(200,'...',false) }}</p>
+                            <a href="{{ path('portfolio_category', {'slug': p.slug}) }}" class="btn btn-primary">voir la
+                                peinture</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div>Aucun contenu pour le moment</div>
+        {% endif %}
+    </div>
+{% endblock body %}
+
+

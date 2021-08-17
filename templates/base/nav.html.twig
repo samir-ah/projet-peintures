@@ -1,7 +1,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+        <a class="navbar-brand" href="{{ path('home') }}">Accueil</a>
         <button
                 class="navbar-toggler navbar-toggler-right"
                 type="button"
@@ -22,10 +22,22 @@
                     <a class="nav-link" href="{{ path('realisations') }}">Réalisations</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#portfolio">Portfolio</a>
+                    <a class="nav-link" href="{{ path('a-propos') }}">A propos</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Portfolio
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{ path('portfolio') }}">Toutes</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        {% for c in categoryNavbar() %}
+                            <li><a class="dropdown-item" href="{{ path('portfolio_category', {'slug': c.slug}) }}">{{ c.name }}</a></li>
+                        {% endfor %}
+                    </ul>
                 </li>
             </ul>
         </div>

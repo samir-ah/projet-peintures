@@ -1,0 +1,19 @@
+{% extends 'base/base.html.twig' %}
+{% block body %}
+    <div class="mx-3 my-5">Portfolio catégories</div>
+    <div class="d-flex flex-wrap">
+        {% for c in categoryList %}
+            <div class="my-2 mx-2">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ c.lastPainting.file }}" class="card-img-top" alt="{{ c.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ c.name }}</h5>
+                        <p class="card-text">{{ c.description|u.truncate(200,'...',false) }}</p>
+                        <a href="{{ path('portfolio_category', {'slug': c.slug}) }}" class="btn btn-primary">voir la catégorie</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock body %}

@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Painting;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -24,7 +26,7 @@ class PaintingRepository extends ServiceEntityRepository
      * @var $max Number of last paintings to get
      */
 
-    public function getLastPaintingList($max)
+    public function getLastPaintingList($max): array
     {
         return $this->createQueryBuilder('p')
             ->orderBy('p.id', 'DESC')
@@ -50,14 +52,29 @@ class PaintingRepository extends ServiceEntityRepository
     }
     */
 
-
-    public function findOneBySomeField($value): ?Painting
+//    /**
+//     * @throws NonUniqueResultException
+//     */
+//    public function findOneBySomeField($value): ?Painting
+//    {
+//        return $this->createQueryBuilder('p')
+//            ->andWhere('p.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->getQuery()
+//            ->getOneOrNullResult();
+//    }
+    /**
+     * @return Painting[] Returns an array of Painting objects
+     */
+    public function findAllPortfolio(Category $category): array
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere(':category MEMBER OF p.category')
+            ->andWhere('p.portfolio = TRUE')
+            ->setParameter('category',$category)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getResult()
+            ;
     }
 
 }

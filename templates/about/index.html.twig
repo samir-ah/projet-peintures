@@ -1,0 +1,14 @@
+{% extends 'base/base.html.twig' %}
+{% block body %}
+    <div class="mx-3 my-5">A propos</div>
+    <div class="d-flex flex-wrap justify-content-center">
+        <figure style="max-width: 400px">
+            <blockquote class="blockquote">
+                <p>{{ peintre.about }}</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+                <cite title="Source Title"> {{ peintre.firstname }} {{ peintre.lastname }}</cite>
+            </figcaption>
+        </figure>
+    </div>
+{% endblock body %}

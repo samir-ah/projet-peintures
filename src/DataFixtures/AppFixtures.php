@@ -13,8 +13,11 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
-    public function __construct(private UserPasswordHasherInterface $encoder)
+    private UserPasswordHasherInterface $encoder;
+
+    public function __construct(UserPasswordHasherInterface $encoder)
     {
+        $this->encoder = $encoder;
     }
 
     public function load(ObjectManager $manager)
@@ -27,7 +30,8 @@ class AppFixtures extends Fixture
             ->setLastName($faker->lastName())
             ->setPhone($faker->phoneNumber())
             ->setAbout($faker->text())
-            ->setInstagram('instagram');
+            ->setInstagram('instagram')
+            ->setRoles(['ROLE_PEINTRE']);
         $password = $this->encoder->hashPassword($user, 'password');
         $user->setPassword($password);
         $manager->persist($user);
@@ -36,7 +40,7 @@ class AppFixtures extends Fixture
         //blogpost
         for ($i = 0; $i < 10; $i++) {
             $blogpost = new BlogPost();
-            $blogpost->setTitle($faker->words(3, true))
+            $blogpost->setTitle((string)$faker->words(3, true))
                 ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
                 ->setContent($faker->text(350))
                 ->setSlug($faker->slug(3))
@@ -47,8 +51,8 @@ class AppFixtures extends Fixture
         //categories
         for ($c = 0; $c < 5; $c++) {
             $category = new Category();
-            $category->setName($faker->words(2, true))
-                ->setDescription($faker->words(10, true))
+            $category->setName((string)$faker->words(2, true))
+                ->setDescription((string)$faker->words(10, true))
                 ->setSlug($faker->slug());
             $manager->persist($category);
             // 2 painting / Category
@@ -56,7 +60,7 @@ class AppFixtures extends Fixture
                 $painting = new Painting();
                 $painting->setWidth($faker->randomFloat(2, 20, 60))
                     ->setHeight($faker->randomFloat(2, 20, 60))
-                    ->setName($faker->words(3, true))
+                    ->setName((string)$faker->words(3, true))
                     ->setDescription($faker->text())
                     ->setPortfolio($faker->randomElement([true, false]))
                     ->setOnSale($faker->randomElement([true, false]))
