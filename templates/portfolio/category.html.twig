@@ -10,7 +10,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ p.name }}</h5>
                             <p class="card-text">{{ p.description|u.truncate(200,'...',false) }}</p>
-                            <a href="{{ path('portfolio_category', {'slug': p.slug}) }}" class="btn btn-primary">voir la
+                            <a href="{{ path('realisations_detail', {'slug': p.slug}) }}" class="btn btn-primary">voir la
                                 peinture</a>
                         </div>
                     </div>

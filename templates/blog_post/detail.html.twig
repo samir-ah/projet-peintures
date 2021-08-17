@@ -1,0 +1,18 @@
+{% extends 'base/base.html.twig' %}
+
+{% block body %}
+    <div class="row mt-5">
+        <div class="col">
+            <h1>{{ blogpost.title }}</h1>
+
+            <div>{{ blogpost.content }}</div>
+
+            <div class="d-flex justify-content-between">
+                <span class="">Publié le:</span>
+                <span class="">{{ blogpost.createdAt|date('d/m/Y') }}</span>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+

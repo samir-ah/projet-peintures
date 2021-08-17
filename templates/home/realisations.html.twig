@@ -1,30 +1,25 @@
 <div class="mx-3">Dernières Réalisations</div>
-<div class="container my-5 d-flex justify-content-center">
-    {% for painting in paintingList %}
-        <div class="card mx-auto" style="max-width: 540px">
-            <div class="row g-0">
-                <div class="col-md-6">
-                    <img
-                            class="img-fluid rounded-start "
-                            src="{{ painting.file }}"
-                            alt="..."
-                    />
-                </div>
-                <div class="col-md-6">
+<div class="d-flex flex-wrap justify-content-center">
+    {% if paintingList|length > 0 %}
+        {% for p in paintingList %}
+            <div class="my-2 mx-2">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ p.file }}" class="card-img-top" alt="{{ p.name }}">
                     <div class="card-body">
-                        <h5 class="card-title">{{ painting.name }}</h5>
-                        <p class="card-text small">
-                            {{ painting.description|u.truncate(200,'...',false) }}
-                        </p>
+                        <h5 class="card-title">{{ p.name }}</h5>
+                        <p class="card-text">{{ p.description|u.truncate(60,'...',false) }}</p>
+                        <a href="{{ path('realisations_detail', {'slug': p.slug}) }}" class="btn btn-primary">voir la
+                            peinture</a>
                     </div>
                     <div class="card-footer">
                         <p class="card-text text-muted small">
-                            {{ painting.createdAt|date('d/m/Y') }}
+                            {{ p.createdAt|date('d/m/Y') }}
                         </p>
                     </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
-
+        {% endfor %}
+    {% else %}
+        <div>Aucun contenu pour le moment</div>
+    {% endif %}
 </div>

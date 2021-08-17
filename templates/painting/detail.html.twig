@@ -1,0 +1,38 @@
+{% extends 'base/base.html.twig' %}
+
+{% block body %}
+    <div class="row mt-5">
+        <div class="col-4">
+            <h1>{{ painting.name }}</h1>
+            <div>
+                {% for c in painting.categories.toArray %}
+                    <span class="bg-dark text-white rounded-3 p-1">{{ c.name }}</span>
+                {% endfor %}
+            </div>
+
+            <div>{{ painting.description }}</div>
+            <div class="d-flex justify-content-between">
+                <span class="">Largeur:</span>
+                <span class="">{{ painting.width }}</span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span class="">Hauteur:</span>
+                <span class="">{{ painting.height }}</span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span class="">Réalisé le:</span>
+                <span class="">{{ painting.completionDate|date('d/m/Y') }}</span>
+            </div>
+            {% if painting.onSale %}
+                <div class="d-flex justify-content-between">
+                    <span class="">Disponible à la vente:</span>
+                    <span class="">{{ painting.price }}€</span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-8">
+            <img class="img-fluid" src="{{ painting.file }}" alt="{{ painting.name }}">
+        </div>
+    </div>
+{% endblock %}
+

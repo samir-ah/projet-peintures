@@ -7,7 +7,7 @@
 					<div class="card-body">
 						<h5 class="card-title">{{ blogpost.title }}</h5>
 						<p class="card-text">{{ blogpost.content|u.truncate(150,'...',false) }}</p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
+						<a href="{{ path('actualites_detail', {'slug': blogpost.slug}) }}" class="btn btn-primary">Voir l'article</a>
 					</div>
 					<div class="card-footer">
 						<p class="card-text text-muted small">{{ blogpost.createdAt|date('d/m/Y') }}</p>
