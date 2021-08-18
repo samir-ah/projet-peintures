@@ -31,3 +31,9 @@ symfony console doctrine:fixtures:load
 ```bash
 php bin/phpunit --testdox 
 ```
+## Production
+### Envoi des emails de Contacts
+Les emails sont stockés en bdd, pour les envoyer mettre en place un cron:
+```bash
+symfony console app:send-emailcontact
+```
