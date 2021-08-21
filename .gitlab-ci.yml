@@ -40,14 +40,14 @@ phpunit:
     image: php:7.4-apache
     stage: Tests
     services:
-        - name: mysql:5.7
+        - name: mysql:latest
           alias: mysql
     variables:
         MYSQL_ROOT_PASSWORD: pass_test
         MYSQL_DATABASE: myapptest
         MYSQL_USER: myapptest
         MYSQL_PASSWORD: myapptest
-        DATABASE_URL: 'mysql://myapptest:myapptest@mysql:3306/myapptest'
+        DATABASE_URL: 'mysql://root:pass_test@mysql:3306/myapptest'
     before_script:
         - apt-get update && apt-get install -y git libzip-dev nodejs npm
         - curl -sSk https://getcomposer.org/installer | php -- --disable-tls && mv composer.phar /usr/local/bin/composer
