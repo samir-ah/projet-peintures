@@ -11,6 +11,9 @@ use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class AppFixtures extends Fixture
 {
     private UserPasswordHasherInterface $encoder;
@@ -38,7 +41,7 @@ class AppFixtures extends Fixture
 
 
         //blogpost
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10000; $i++) {
             $blogpost = new BlogPost();
             $blogpost->setTitle((string)$faker->words(3, true))
                 ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
@@ -48,15 +51,24 @@ class AppFixtures extends Fixture
             $manager->persist($blogpost);
         }
 
+        //Création d'un blogpost pour les tests
+        $blogpost = new BlogPost();
+        $blogpost->setTitle('Blogpost test')
+            ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
+            ->setContent($faker->text(350))
+            ->setSlug('blogpost-test')
+            ->setUser($user);
+        $manager->persist($blogpost);
+
         //categories
-        for ($c = 0; $c < 5; $c++) {
+        for ($c = 0; $c < 20; $c++) {
             $category = new Category();
             $category->setName((string)$faker->words(2, true))
                 ->setDescription((string)$faker->words(10, true))
                 ->setSlug($faker->slug());
             $manager->persist($category);
             // 2 painting / Category
-            for ($p = 0; $p < 2; $p++) {
+            for ($p = 0; $p < 200; $p++) {
                 $painting = new Painting();
                 $painting->setWidth($faker->randomFloat(2, 20, 60))
                     ->setHeight($faker->randomFloat(2, 20, 60))
@@ -75,7 +87,30 @@ class AppFixtures extends Fixture
                 $manager->persist($painting);
             }
         }
+        //Categorie et peinture pour tests
+        $category = new Category();
+        $category->setName((string)$faker->words(2, true))
+            ->setDescription((string)$faker->words(10, true))
+            ->setSlug($faker->slug());
+        $manager->persist($category);
+        $painting = new Painting();
+        $painting->setWidth($faker->randomFloat(2, 20, 60))
+            ->setHeight($faker->randomFloat(2, 20, 60))
+            ->setName('peinture test')
+            ->setDescription($faker->text())
+            ->setPortfolio($faker->randomElement([true, false]))
+            ->setOnSale($faker->randomElement([true, false]))
+            ->setFile('/img/portfolio/fullsize/' . $faker->numberBetween(1, 6) . '.jpg')
+            ->setPrice($faker->randomFloat(2, 100, 10000))
+            ->setSlug('peinture-test')
+            ->setUser($user)
+            ->addCategory($category)
+            ->setCompletionDate($faker->dateTimeBetween('-6 month', 'now'))
+            ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'));
+
+        $manager->persist($painting);
 
         $manager->flush();
+
     }
 }
