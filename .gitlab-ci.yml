@@ -57,6 +57,7 @@ phpunit:
         - php bin/console doctrine:migrations:migrate --no-interaction
         - php bin/console doctrine:fixtures:load --no-interaction
         - composer install
+        - npm install
         - npm run build
 
     script:
