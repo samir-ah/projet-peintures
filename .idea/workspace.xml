@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0f5d7fea-48a9-411a-8dca-575315979c5d" name="Changes" comment="fix gitlab mysql conf">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0f5d7fea-48a9-411a-8dca-575315979c5d" name="Changes" comment="fix gitlab mysql conf" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -195,7 +193,7 @@
       <option name="presentableId" value="Default" />
       <updated>1629538466836</updated>
       <workItem from="1629538470348" duration="9199000" />
-      <workItem from="1629629425920" duration="4230000" />
+      <workItem from="1629629425920" duration="4551000" />
     </task>
     <task id="LOCAL-00001" summary="test fonctionnels">
       <created>1629546803296</created>
@@ -295,7 +293,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629633278955</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fix gitlab mysql conf">
+      <created>1629634004359</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1629634004359</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
