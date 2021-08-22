@@ -1,22 +1,22 @@
 image: jakzal/phpqa:php8.0-alpine
 
 before_script:
-  - composer install
+    - composer install
 
 cache:
-  paths:
-    - vendor/
+    paths:
+        - vendor/
 
 stages:
-  - SecurityChecker
-  - CodingStandards
-  - Tests
+    - SecurityChecker
+    - CodingStandards
+    - Tests
 
 security-checker:
-  stage: SecurityChecker
-  script:
-    - local-php-security-checker  --path=./composer.lock
-  allow_failure: false
+    stage: SecurityChecker
+    script:
+        - local-php-security-checker  --path=./composer.lock
+    allow_failure: false
 
 #phpcs:
 #    stage: CodingStandards
@@ -25,41 +25,41 @@ security-checker:
 #    allow_failure: true
 
 phpstan:
-  stage: CodingStandards
-  script:
-    - phpstan analyse ./src
-  allow_failure: true
+    stage: CodingStandards
+    script:
+        - phpstan analyse ./src
+    allow_failure: true
 
 twig-lint:
-  stage: CodingStandards
-  script:
-    - twig-lint lint ./templates
-  allow_failure: true
+    stage: CodingStandards
+    script:
+        - twig-lint lint ./templates
+    allow_failure: true
 
 phpunit:
-  image: php:7.4-apache
-  stage: Tests
-  services:
-    - name: mysql:latest
-      alias: mysql
-  variables:
-    MYSQL_ROOT_PASSWORD: pass_test
-    MYSQL_DATABASE: myapptest
-    MYSQL_USER: myapptest
-    MYSQL_PASSWORD: myapptest
-    DATABASE_URL: 'mysql://root:pass_test@mysql:3306/myapptest'
-  before_script:
-    - apt-get update && apt-get install -y git libzip-dev nodejs npm
-    - curl -sSk https://getcomposer.org/installer | php -- --disable-tls && mv composer.phar /usr/local/bin/composer
-    - docker-php-ext-install mysqli pdo pdo_mysql zip
-    #        - php bin/console doctrine:database:drop --force --env=test
-    - php bin/console doctrine:database:create --env=test
-    - php bin/console doctrine:migrations:migrate --env=test --no-interaction
-    - php bin/console doctrine:fixtures:load --no-interaction
-    - composer install
-    - npm install
-    - npm run build
+    image: php:7.4-apache
+    stage: Tests
+    services:
+        - name: mysql:latest
+          alias: mysql
+    variables:
+        MYSQL_ROOT_PASSWORD: pass_test
+        MYSQL_DATABASE: myapptest
+        MYSQL_USER: myapptest
+        MYSQL_PASSWORD: myapptest
+        DATABASE_URL: 'mysql://myapptest:myapptest@mysql:3306/myapptest'
+    before_script:
+        - apt-get update && apt-get install -y git libzip-dev nodejs npm
+        - curl -sSk https://getcomposer.org/installer | php -- --disable-tls && mv composer.phar /usr/local/bin/composer
+        - docker-php-ext-install mysqli pdo pdo_mysql zip
+        - php bin/console doctrine:database:drop --force --env=test
+        - php bin/console doctrine:database:create --env=test
+        - php bin/console doctrine:migrations:migrate --env=test --no-interaction
+        - php bin/console doctrine:fixtures:load --no-interaction
+        - composer install
+        - npm install
+        - npm run build
 
-  script:
-    - php bin/phpunit
-  allow_failure: false
+    script:
+        - php bin/phpunit
+    allow_failure: true

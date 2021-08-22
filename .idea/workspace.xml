@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0f5d7fea-48a9-411a-8dca-575315979c5d" name="Changes" comment="fix gitlab mysql conf" />
+    <list default="true" id="0f5d7fea-48a9-411a-8dca-575315979c5d" name="Changes" comment="fix gitlab mysql conf">
+      <change afterPath="$PROJECT_DIR$/templates/admin/dashboard.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/DashboardController.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -193,7 +198,7 @@
       <option name="presentableId" value="Default" />
       <updated>1629538466836</updated>
       <workItem from="1629538470348" duration="9199000" />
-      <workItem from="1629629425920" duration="4941000" />
+      <workItem from="1629629425920" duration="6119000" />
     </task>
     <task id="LOCAL-00001" summary="test fonctionnels">
       <created>1629546803296</created>
@@ -307,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629634402197</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="fix gitlab mysql conf">
+      <created>1629634779489</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1629634779489</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
