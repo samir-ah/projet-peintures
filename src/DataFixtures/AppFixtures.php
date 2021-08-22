@@ -41,7 +41,7 @@ class AppFixtures extends Fixture
 
 
         //blogpost
-        for ($i = 0; $i < 10000; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $blogpost = new BlogPost();
             $blogpost->setTitle((string)$faker->words(3, true))
                 ->setCreatedAt($faker->dateTimeBetween('-6 month', 'now'))
@@ -61,14 +61,14 @@ class AppFixtures extends Fixture
         $manager->persist($blogpost);
 
         //categories
-        for ($c = 0; $c < 20; $c++) {
+        for ($c = 0; $c < 5; $c++) {
             $category = new Category();
             $category->setName((string)$faker->words(2, true))
                 ->setDescription((string)$faker->words(10, true))
                 ->setSlug($faker->slug());
             $manager->persist($category);
             // 2 painting / Category
-            for ($p = 0; $p < 200; $p++) {
+            for ($p = 0; $p < 3; $p++) {
                 $painting = new Painting();
                 $painting->setWidth($faker->randomFloat(2, 20, 60))
                     ->setHeight($faker->randomFloat(2, 20, 60))
